@@ -1,10 +1,12 @@
-
 import os
 import streamlit as st
 from langchain.vectorstores.chroma import Chroma
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
-st.write("Hello!")
+
+# Header
+st.header("dev Coach")
+st.subheader("A virtual tutor designed to assist students in learning coding through retrieval-augmented generation.")
 
 MD_CHROMA_PATH = "data/chroma_md"  # Path for Markdown files
 TXT_CHROMA_PATH = "data/chroma_txt"  # Path for text files
