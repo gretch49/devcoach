@@ -4,17 +4,12 @@ from langchain.vectorstores.chroma import Chroma
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 
-st.markdown(
-"""
-<style>
-body {
-    color: white;
-    background-color: #333333;
-}
-</style>
-""",
-unsafe_allow_html=True
-)
+[theme]
+primaryColor="#F63366"
+backgroundColor="#FFFFFF"
+secondaryBackgroundColor="#F0F2F6"
+textColor="#262730"
+font="sans serif"
 
 # Header
 st.header("dev Coach")
