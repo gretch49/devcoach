@@ -1,2 +1,4 @@
 [theme]
-base = "dark"
+base="dark"
+primaryColor="purple"
+font="monospace"
