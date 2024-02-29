@@ -6,7 +6,7 @@ from langchain.prompts import ChatPromptTemplate
 
 with st.sidebar:
     users_api_key = st.text_input("OpenAI API Key", key="file_api_key", type="password")
-st.header('🤖 dev Coach')
+st.header('devCoach')
 st.subheader("A virtual tutor designed to assist students in learning coding through retrieval-augmented generation.", divider='rainbow')
 st.caption('This is a string that explains something above.')
 
