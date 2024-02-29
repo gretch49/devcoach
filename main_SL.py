@@ -7,7 +7,7 @@ from langchain.prompts import ChatPromptTemplate
 
 primaryColor="#F63366"
 backgroundColor="#1F1F1F"
-secondaryBackgroundColor="#F0F2F6"
+secondaryBackgroundColor="#1F1F1F"
 textColor="#262730"
 font="sans serif"
 
