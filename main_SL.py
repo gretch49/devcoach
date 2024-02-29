@@ -5,7 +5,7 @@ from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 
 with st.sidebar:
-    users_api_key = st.text_input("OpenAI API Key", key="users_api_key", type="password")
+    users_api_key = st.text_input("OpenAI API Key", key="file_api_key", type="password")
 st.header('🤖 dev Coach')
 st.subheader("A virtual tutor designed to assist students in learning coding through retrieval-augmented generation.", divider='rainbow')
 st.caption('This is a string that explains something above.')
@@ -14,24 +14,24 @@ MD_CHROMA_PATH = "data/chroma_md"  # Path for Markdown files
 TXT_CHROMA_PATH = "data/chroma_txt"  # Path for text files
 HTML_CHROMA_PATH = "data/chroma_html"  # Path for HTML files
 
-# PROMPT_TEMPLATE = """
-# You are a computer programming tutor. Answer the question based on the following context:
+PROMPT_TEMPLATE = """
+You are a computer programming tutor. Answer the question based on the following context:
 
-# {context}
+{context}
 
-# Don't reference the context in your response, because your student might not have access to it.
-# ---
+Don't reference the context in your response, because your student might not have access to it.
+---
 
-# Answer the question based on the above context: {question}
+Answer the question based on the above context: {question}
 
-# If the question isn't related to tech, programming, computers, or software, answer the question but also ask the student if they have any computer programming questions. If the student is on-topic, just answer the question.
-# """
+If the question isn't related to tech, programming, computers, or software, answer the question but also ask the student if they have any computer programming questions. If the student is on-topic, just answer the question.
+"""
 
-# def main():
-#     OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-#     if not OPENAI_API_KEY:
-#         st.error("You must enter your API key.")
-#         return
+def main():
+    OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+    if not OPENAI_API_KEY and not users_api_key:
+        st.error("You must enter your API key.")
+        return
 
 #     # Prepare the DB for Markdown files.
 #     embedding_function = OpenAIEmbeddings()
@@ -105,5 +105,5 @@ HTML_CHROMA_PATH = "data/chroma_html"  # Path for HTML files
 #             st.write(f"AI Tutor: {response_text}")
 #             st.write("*" * 20)
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
