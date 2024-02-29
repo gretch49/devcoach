@@ -9,7 +9,7 @@ primaryColor="#F63366"
 backgroundColor="#1F1F1F"
 secondaryBackgroundColor="#1F1F1F"
 textColor="#262730"
-font="sans serif"
+font="monospace"
 
 # Header
 st.header("dev Coach")
