@@ -89,7 +89,7 @@ def main():
                     print(doc.page_content)
                     print("-" * 20, "\n\n")
             else:
-                print("No matching results. I'll give you my best guess.")
+                print("No matching results from the RAG database. I'll give you my best guess.")
 
             print("*" * 20)
             print(f"AI Tutor: {response_text}")
