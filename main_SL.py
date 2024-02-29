@@ -1,15 +1,14 @@
+
+import os
 import streamlit as st
+from langchain.vectorstores.chroma import Chroma
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+from langchain.prompts import ChatPromptTemplate
 st.write("Hello!")
 
-# import os
-# import streamlit as st
-# from langchain.vectorstores.chroma import Chroma
-# from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-# from langchain.prompts import ChatPromptTemplate
-
-# MD_CHROMA_PATH = "data/chroma_md"  # Path for Markdown files
-# TXT_CHROMA_PATH = "data/chroma_txt"  # Path for text files
-# HTML_CHROMA_PATH = "data/chroma_html"  # Path for HTML files
+MD_CHROMA_PATH = "data/chroma_md"  # Path for Markdown files
+TXT_CHROMA_PATH = "data/chroma_txt"  # Path for text files
+HTML_CHROMA_PATH = "data/chroma_html"  # Path for HTML files
 
 # PROMPT_TEMPLATE = """
 # You are a computer programming tutor. Answer the question based on the following context:
