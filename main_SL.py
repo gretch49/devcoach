@@ -8,7 +8,6 @@ from langchain.prompts import ChatPromptTemplate
 st.header("dev Coach")
 st.subheader("A virtual tutor designed to assist students in learning coding through retrieval-augmented generation.", divider='rainbow')
 st.caption('This is a string that explains something above.')
-st.divider('rainbow')
 
 MD_CHROMA_PATH = "data/chroma_md"  # Path for Markdown files
 TXT_CHROMA_PATH = "data/chroma_txt"  # Path for text files
