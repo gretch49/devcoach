@@ -5,10 +5,6 @@ from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 
 
-[theme]
-base="dark"
-primaryColor="purple"
-
 # Header
 st.header("dev Coach")
 st.subheader("A virtual tutor designed to assist students in learning coding through retrieval-augmented generation.", divider='rainbow')
