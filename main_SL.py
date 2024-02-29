@@ -5,11 +5,9 @@ from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 
 
-primaryColor="#F63366"
-backgroundColor="#1F1F1F"
-secondaryBackgroundColor="#1F1F1F"
-textColor="#262730"
-font="monospace"
+[theme]
+base="dark"
+primaryColor="purple"
 
 # Header
 st.header("dev Coach")
