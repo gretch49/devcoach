@@ -4,6 +4,18 @@ from langchain.vectorstores.chroma import Chroma
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 
+st.markdown(
+"""
+<style>
+body {
+    color: white;
+    background-color: #333333;
+}
+</style>
+""",
+unsafe_allow_html=True
+)
+
 # Header
 st.header("dev Coach")
 st.subheader("A virtual tutor designed to assist students in learning coding through retrieval-augmented generation.", divider='rainbow')
