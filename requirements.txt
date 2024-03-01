@@ -1,3 +1,4 @@
+python>=3.10 
 langchain
 langchain_openai
 unstructured # Document loading
