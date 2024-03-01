@@ -1,4 +1,4 @@
-python>=3.10 
+pysqlite3-binary
 langchain
 langchain_openai
 unstructured # Document loading
