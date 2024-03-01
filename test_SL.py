@@ -4,42 +4,23 @@ from langchain.vectorstores.chroma import Chroma
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 
-st.header(':robot_face: devCoach')
-st.write("A virtual coach designed to assist students in learning coding through retrieval-augmented generation.")
-st.subheader(" ", divider='rainbow')
-st.write(" ")
+st.header('devCoach')
+st.subheader("A virtual tutor designed to assist students in learning coding through retrieval-augmented generation.", divider='rainbow')
 
-MD_CHROMA_PATH = "data/chroma_md"  # Path for Markdown files
-TXT_CHROMA_PATH = "data/chroma_txt"  # Path for text files
-HTML_CHROMA_PATH = "data/chroma_html"  # Path for HTML files
-
-PROMPT_TEMPLATE = """
-You are a computer programming tutor. Answer the question based on the following context:
-
-{context}
-
-Don't reference the context in your response, because your student might not have access to it.
----
-
-Answer the question based on the above context: {question}
-
-If the question isn't related to tech, programming, computers, or software, answer the question but also ask the student if they have any computer programming questions. If the student is on-topic, just answer the question.
-"""
 
 def main():
     st.sidebar.title("Authentication")
-    st.sidebar.write("Enter your OpenAI API key or the passcode.")
+    auth_method = st.sidebar.selectbox("Select Authentication Method", ["OpenAI API Key", "Gretchen's Password"])
 
     openai_api_key = None
-    openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
-    password = st.sidebar.text_input("Passcode", type="password")
+    if auth_method == "OpenAI API Key":
+        openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
+    elif auth_method == "Gretchen's Password":
+        password = st.sidebar.text_input("Enter Gretchen's Password", type="password")
+        if password == "supersecret":
+            openai_api_key = os.environ.get("OPENAI_API_KEY")
 
-    if password != "" and password != "supersecret":
-        st.sidebar.markdown(':red[*Incorrect password*]')
-    elif password == "supersecret":
-        openai_api_key = os.environ.get("OPENAI_API_KEY")
-
-    if not openai_api_key and password != "supersecret":
+    if not openai_api_key and auth_method != "Gretchen's Password":
         st.info("Please provide the OpenAI API key or Gretchen's password to continue.")
         return
     
@@ -56,12 +37,18 @@ def main():
         # Initialize ChatOpenAI model.
         model = ChatOpenAI()
 
+        st.title("AI Programming Tutor")
+
         # Ask user for the question.
         query_text = st.text_input("Enter your question:")
 
+        if not query_text:
+            st.warning("Please enter a question.")
+            return
+
         # Check if the user wants to end the conversation.
         if query_text.lower() == "bye":
-            st.write("Goodbye!")
+            st.write("Computer: Goodbye!")
             return
 
         # Search the DB for Markdown files.
@@ -71,6 +58,10 @@ def main():
 
         # Combine results from all databases
         results = md_results + txt_results + html_results
+
+        if not results:
+            st.write("Computer: Unable to find matching results.")
+            return
 
         results = [(doc, score) for doc, score in results if score >= 0.8]
 
@@ -99,9 +90,8 @@ def main():
                 st.write(doc.page_content)
                 st.write("-" * 20)
 
-        st.write("   ")
-        st.subheader("Coach's Response:")
-        st.write(f"{response_text}")
+        st.subheader("AI Tutor's Response:")
+        st.write(f"AI Tutor: {response_text}")
 
 if __name__ == "__main__":
     main()
