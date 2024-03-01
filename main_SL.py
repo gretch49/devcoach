@@ -22,12 +22,20 @@ If the question isn't related to tech, programming, computers, or software, answ
 """
 
 def main():
-    st.title("AI Programming Tutor")
+    st.sidebar.title("Authentication")
+    option = st.sidebar.selectbox("Select Authentication Method", ["API Key", "Gretchen's Password"])
 
-    OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-    if not OPENAI_API_KEY:
-        st.error("You must enter your API key.")
-        st.stop()
+    if option == "API Key":
+        api_key = st.sidebar.text_input("Enter Your API Key")
+        os.environ["OPENAI_API_KEY"] = api_key
+    elif option == "Gretchen's Password":
+        password = st.sidebar.text_input("Enter Gretchen's Password", type="password")
+        if password == "supersecret":
+            # Set Gretchen's API key using environment variable
+            os.environ["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY")
+        else:
+            st.error("Incorrect Password. Access Denied.")
+            st.stop()
 
     # Prepare the DB for Markdown files.
     embedding_function = OpenAIEmbeddings()
@@ -41,6 +49,8 @@ def main():
 
     # Initialize ChatOpenAI model.
     model = ChatOpenAI()
+
+    st.title("AI Programming Tutor")
 
     # Ask user for the question.
     query_text = st.text_input("Enter your question:")
