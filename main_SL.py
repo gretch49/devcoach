@@ -6,6 +6,12 @@ from langchain.llms import OpenAI
 from langchain.prompts import ChatPromptTemplate
 import sqlite3
 
+
+# Output information about installed packages
+st.write("Installed packages:")
+st.write("\n".join(os.popen('pip freeze').readlines()))
+
+
 st.header(':robot_face: devCoach')
 st.write("A virtual coach designed to assist students in learning coding through retrieval-augmented generation.")
 st.subheader(" ", divider='rainbow')
