@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 from langchain.vectorstores.chroma import Chroma
-import chromadb
+
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 import sqlite3
