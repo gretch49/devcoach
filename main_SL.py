@@ -3,6 +3,7 @@ import os
 from langchain.vectorstores.chroma import Chroma
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
+import sqlite3
 
 st.header(':robot_face: devCoach')
 st.write("A virtual coach designed to assist students in learning coding through retrieval-augmented generation.")
