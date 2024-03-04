@@ -3,6 +3,6 @@
 
 [theme]
 base="dark"
-primaryColor="red"
+primaryColor="purple"
 font="monospace"
-secondaryBackgroundColor="red"
+secondaryBackgroundColor="#4C3C52"
