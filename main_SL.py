@@ -8,7 +8,7 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-st.header(':robot_face: devCoach')
+st.header(':robot_face: devCoach in progress')
 st.write("A virtual coach designed to assist students in learning coding through retrieval-augmented generation.")
 st.subheader(" ", divider='rainbow')
 st.write(" ")
