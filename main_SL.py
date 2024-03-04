@@ -79,7 +79,7 @@ def main():
             # Combine results from all databases
             results = md_results + txt_results + html_results
     
-            results = [(doc, score) for doc, score in results if score >= 0.8]
+            results = [(doc, score) for doc, score in results if score >= 0.6]
     
             if not results:
                 context_text = "\n\n---\n\n There is no context. Use your own knowledge."
