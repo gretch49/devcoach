@@ -4,7 +4,6 @@ from langchain.vectorstores.chroma import Chroma
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.llms import OpenAI
 from langchain.prompts import ChatPromptTemplate
-
 __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
@@ -32,23 +31,25 @@ If the question isn't related to tech, programming, computers, or software, answ
 """
 
 def main():
+    print("Working")
     st.sidebar.title("Authentication")
     st.sidebar.write("Enter your OpenAI API key or the passcode.")
-    gv_password = st.secrets["gv_password"]
+    
+    my_password = st.secrets["gv_password"]
 
     openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
     password = st.sidebar.text_input("Passcode", type="password")
 
-    if password != "" and password != gv_password:
+    if password != "" and password != my_password:
         st.sidebar.markdown(':red[*Incorrect password*]')
-    elif password == gv_password:
+    elif password == my_password:
         openai_api_key = st.secrets["OPENAI_API_KEY"]
 
-    if not openai_api_key and password != gv_password:
+    if not openai_api_key and password != my_password:
         st.info("Please provide the OpenAI API key or Gretchen's password to continue.")
         return
     
-    if openai_api_key or password == gv_password:
+    if openai_api_key or password == my_password:
         embedding_function = OpenAIEmbeddings(openai_api_key=openai_api_key)
         md_db = Chroma(persist_directory=MD_CHROMA_PATH, embedding_function=embedding_function)
 
