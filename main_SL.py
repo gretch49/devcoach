@@ -93,6 +93,10 @@ def main():
     
             # Extract response text from the response object
             response_text = response.content.strip(' "')
+
+            st.write("   ")
+            st.subheader("Coach's Response:")
+            st.write(f"{response_text}")
     
             # Display the metadata and response text for each result
             if results:
@@ -104,9 +108,7 @@ def main():
                     st.write(doc.page_content)
                     st.write("-" * 20)
     
-            st.write("   ")
-            st.subheader("Coach's Response:")
-            st.write(f"{response_text}")
+
 
 if __name__ == "__main__":
     main()
