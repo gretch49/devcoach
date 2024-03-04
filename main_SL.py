@@ -104,12 +104,17 @@ def main():
             if results:
                 st.write("-" * 20)
                 st.subheader("dev Coach used these references:")
-                for doc, score in results:
+                
+                # Sort results based on relevance score
+                sorted_results = sorted(results, key=lambda x: x[1], reverse=True)
+                
+                for doc, score in sorted_results:
                     st.write(f"Document: {doc.metadata}")
                     st.write(f"Relevance Score: {score}")
                     st.write("Content:")
                     st.write(doc.page_content)
-                    st.write("-" * 20  )
+                    st.write("-" * 20)
+
 
 if __name__ == "__main__":
     main()
