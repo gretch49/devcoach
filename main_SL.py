@@ -107,8 +107,7 @@ def main():
                     st.write(f"Relevance Score: {score}")
                     st.write("Content:")
                     st.write(doc.page_content)
-    
-
+                    st.write("-" * 20)
 
 if __name__ == "__main__":
     main()
