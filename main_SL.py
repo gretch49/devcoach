@@ -102,11 +102,11 @@ def main():
             if results:
                 st.subheader("Matching Results:")
                 for doc, score in results:
+                    st.write("-" * 20)
                     st.write(f"Document: {doc.metadata}")
                     st.write(f"Relevance Score: {score}")
                     st.write("Content:")
                     st.write(doc.page_content)
-                    st.write("-" * 20)
     
 
 
