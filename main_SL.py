@@ -39,7 +39,7 @@ def main():
     if password != "" and password != "supersecret":
         st.sidebar.markdown(':red[*Incorrect password*]')
     elif password == "supersecret":
-        openai_api_key = st.secrets["openai_api_key"]
+        openai_api_key = st.secrets["OPENAI_API_KEY"]
 
     if not openai_api_key and password != "supersecret":
         st.info("Please provide the OpenAI API key or Gretchen's password to continue.")
