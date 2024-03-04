@@ -1,4 +1,4 @@
-name: Run Script
+name: Streamlit Deployment
 
 on:
   push:
@@ -6,14 +6,24 @@ on:
       - main
 
 jobs:
-  run-script:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.12.2' # Specify Python 3.x
-      - name: Run script
-        run: python3 create_database.py
+          python-version: 3.8
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Deploy Streamlit Application
+        run: |
+          streamlit run app.py &
+          sleep 60
+          pkill -f "streamlit run app.py"
