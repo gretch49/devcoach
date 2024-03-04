@@ -6,6 +6,10 @@ from langchain.schema import Document
 from langchain_openai import OpenAIEmbeddings
 from langchain.vectorstores.chroma import Chroma
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 DATA_PATH = "data"
 CHROMA_PATH_HTML = os.path.join(DATA_PATH, "chroma_html")
 CHROMA_PATH_MD = os.path.join(DATA_PATH, "chroma_md")
@@ -53,6 +57,7 @@ def load_documents(glob_pattern):
     documents = loader.load()
     return documents
 
+
 def split_text(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=300,
@@ -63,10 +68,10 @@ def split_text(documents: list[Document]):
     chunks = text_splitter.split_documents(documents)
     print(f"Split {len(documents)} documents into {len(chunks)} chunks.")
 
-    # Print an example document and its metadata
-    document = chunks[1]
-    print(f"Document content: {document.page_content}\n\n\n")
-    print(f"Document metadata: {document.metadata}")
+    # # Print an example document and its metadata
+    # document = chunks[1]
+    # print(f"Document content: {document.page_content}\n\n\n")
+    # print(f"Document metadata: {document.metadata}")
 
     return chunks
 
