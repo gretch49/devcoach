@@ -27,7 +27,7 @@ Don't reference the context in your response, because your student might not hav
 
 Answer the question based on the above context: {question}
 
-If the question isn't related to tech, programming, computers, or software, answer the question but also ask the student if they have any computer programming questions. If the student is on-topic, just answer the question.
+If the question isn't related to tech, programming, computers, or software, answer the question but also ask the student if they have any computer programming questions. If the student is on-topic, don't ask if they have more questions.
 """
 
 def main():
