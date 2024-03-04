@@ -101,7 +101,7 @@ def main():
             # Display the metadata and response text for each result
             if results:
                 st.write("-" * 20)
-                st.markdown("**dev Coach used these references:**")
+                st.subheader("dev Coach used these references:")
                 for doc, score in results:
                     st.write(f"Document: {doc.metadata}")
                     st.write(f"Relevance Score: {score}")
