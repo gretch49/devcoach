@@ -1,38 +1,30 @@
 import os
 import requests
-from html2markdown import convert
 from bs4 import BeautifulSoup
-
-# Retrieve API key from environmental variable
-API_KEY = os.getenv("OPENAI_API_KEY")
+from markdownify import markdownify as md
 
 def download_webpage(url):
     try:
         # Send a GET request to the URL to fetch the webpage content
-        headers = {'Content-Type': 'text/html; charset=utf-8'}  # Add headers to specify encoding
-        response = requests.get(url.encode('utf-8'), headers=headers)  # Encode the URL using UTF-8
-        
-        response.raise_for_status()  # Raise an exception for any HTTP errors
+        headers = {'Content-Type': 'text/html; charset=utf-8'}
+        response = requests.get(url.encode('utf-8'), headers=headers)
+        response.raise_for_status()
 
         # Parse the HTML content of the webpage using BeautifulSoup
         soup = BeautifulSoup(response.text, 'html.parser')
-
-        # Extract the text content from the webpage
-        text_content = soup.get_text()
-
-        return text_content
+        return soup
     except requests.exceptions.RequestException as e:
         print(f"Failed to download webpage from {url}: {e}")
         return None
 
 def save_content_to_file(content, url):
     # Extract filename from the URL
-    filename = url.replace("https://", "")  # Remove the prefix
-    filename = filename.strip("/")  # Remove leading/trailing slashes
-    filename = filename.replace("/", "_")  # Replace remaining slashes with underscores
+    filename = url.replace("https://", "")
+    filename = filename.strip("/")
+    filename = filename.replace("/", "_")
 
     # Convert HTML content to Markdown
-    markdown_content = convert(content)
+    markdown_content = md(content)
 
     # Ensure that the "data" folder exists within the project directory
     current_dir = os.path.dirname(__file__)
