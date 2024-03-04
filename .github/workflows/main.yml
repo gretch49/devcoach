@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.9
 
       - name: Install Dependencies
         run: |
@@ -24,6 +24,6 @@ jobs:
 
       - name: Deploy Streamlit Application
         run: |
-          streamlit run app.py &
+          streamlit run main_SL.py &
           sleep 60
-          pkill -f "streamlit run app.py"
+          pkill -f "streamlit run main_SL.py"
