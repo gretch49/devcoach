@@ -100,9 +100,9 @@ def main():
     
             # Display the metadata and response text for each result
             if results:
+                st.write("-" * 20)
                 st.subheader("Matching Results:")
                 for doc, score in results:
-                    st.write("-" * 20)
                     st.write(f"Document: {doc.metadata}")
                     st.write(f"Relevance Score: {score}")
                     st.write("Content:")
