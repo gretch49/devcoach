@@ -3,6 +3,10 @@ from langchain.vectorstores.chroma import Chroma
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 MD_CHROMA_PATH = "data/chroma_md"  # Path for Markdown files
 TXT_CHROMA_PATH = "data/chroma_txt"  # Path for text files
 HTML_CHROMA_PATH = "data/chroma_html"  # Path for HTML files
