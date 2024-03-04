@@ -46,7 +46,7 @@ def main():
         openai_api_key = st.secrets["OPENAI_API_KEY"]
 
     if not openai_api_key and password != my_password:
-        st.info("Please provide the OpenAI API key or Gretchen's password to continue.")
+        st.info("Please provide the OpenAI API key or Gretchen's passcode to continue.")
         return
     
     if openai_api_key or password == my_password:
