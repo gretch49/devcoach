@@ -33,7 +33,6 @@ def main():
     st.sidebar.title("Authentication")
     st.sidebar.write("Enter your OpenAI API key or the passcode.")
 
-    openai_api_key = None
     openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
     password = st.sidebar.text_input("Passcode", type="password")
 
