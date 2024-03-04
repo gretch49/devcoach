@@ -67,45 +67,46 @@ def main():
         if query_text.lower() == "bye":
             st.write("Goodbye!")
             return
-
-        # Search the DB for Markdown files.
-        md_results = md_db.similarity_search_with_relevance_scores(query_text, k=3)
-        txt_results = txt_db.similarity_search_with_relevance_scores(query_text, k=3)
-        html_results = html_db.similarity_search_with_relevance_scores(query_text, k=3)
-
-        # Combine results from all databases
-        results = md_results + txt_results + html_results
-
-        results = [(doc, score) for doc, score in results if score >= 0.8]
-
-        if not results:
-            context_text = "\n\n---\n\n There is no context. Use your own knowledge."
-        else:
-            context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
-
-        # Generate prompt.
-        prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
-        prompt = prompt_template.format(context=context_text, question=query_text)
-
-        # Invoke OpenAI model.
-        response = model.invoke(prompt)
-
-        # Extract response text from the response object
-        response_text = response.content.strip(' "')
-
-        # Display the metadata and response text for each result
-        if results:
-            st.subheader("Matching Results:")
-            for doc, score in results:
-                st.write(f"Document: {doc.metadata}")
-                st.write(f"Relevance Score: {score}")
-                st.write("Content:")
-                st.write(doc.page_content)
-                st.write("-" * 20)
-
-        st.write("   ")
-        st.subheader("Coach's Response:")
-        st.write(f"{response_text}")
+        if query_text:
+            
+            # Search the DB for Markdown files.
+            md_results = md_db.similarity_search_with_relevance_scores(query_text, k=3)
+            txt_results = txt_db.similarity_search_with_relevance_scores(query_text, k=3)
+            html_results = html_db.similarity_search_with_relevance_scores(query_text, k=3)
+    
+            # Combine results from all databases
+            results = md_results + txt_results + html_results
+    
+            results = [(doc, score) for doc, score in results if score >= 0.8]
+    
+            if not results:
+                context_text = "\n\n---\n\n There is no context. Use your own knowledge."
+            else:
+                context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
+    
+            # Generate prompt.
+            prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
+            prompt = prompt_template.format(context=context_text, question=query_text)
+    
+            # Invoke OpenAI model.
+            response = model.invoke(prompt)
+    
+            # Extract response text from the response object
+            response_text = response.content.strip(' "')
+    
+            # Display the metadata and response text for each result
+            if results:
+                st.subheader("Matching Results:")
+                for doc, score in results:
+                    st.write(f"Document: {doc.metadata}")
+                    st.write(f"Relevance Score: {score}")
+                    st.write("Content:")
+                    st.write(doc.page_content)
+                    st.write("-" * 20)
+    
+            st.write("   ")
+            st.subheader("Coach's Response:")
+            st.write(f"{response_text}")
 
 if __name__ == "__main__":
     main()
